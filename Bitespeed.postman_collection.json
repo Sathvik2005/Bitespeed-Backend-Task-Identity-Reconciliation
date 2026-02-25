@@ -1,0 +1,133 @@
+{
+  "info": {
+    "name": "Bitespeed Identity Reconciliation",
+    "description": "API collection for testing the identity reconciliation service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Identify - New Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"doc@fluxkart.com\",\n  \"phoneNumber\": \"999999\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/identify",
+          "host": ["{{baseUrl}}"],
+          "path": ["identify"]
+        }
+      }
+    },
+    {
+      "name": "Identify - Same Customer New Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"newemail@fluxkart.com\",\n  \"phoneNumber\": \"999999\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/identify",
+          "host": ["{{baseUrl}}"],
+          "path": ["identify"]
+        }
+      }
+    },
+    {
+      "name": "Identify - Merge Primaries Scenario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"george@hillvalley.edu\",\n  \"phoneNumber\": \"717171\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/identify",
+          "host": ["{{baseUrl}}"],
+          "path": ["identify"]
+        }
+      }
+    },
+    {
+      "name": "Identify - Email Only",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"lorraine@hillvalley.edu\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/identify",
+          "host": ["{{baseUrl}}"],
+          "path": ["identify"]
+        }
+      }
+    },
+    {
+      "name": "Identify - Phone Only",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phoneNumber\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/identify",
+          "host": ["{{baseUrl}}"],
+          "path": ["identify"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}

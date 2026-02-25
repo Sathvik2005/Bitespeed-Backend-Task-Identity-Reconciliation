@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitespeed Identity Reconciliation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Bitespeed Identity Reconciliation</h1>
+            <p class="subtitle">FluxKart Customer Identity Tracking System</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Form -->
+            <div class="card">
+                <h2>Identify Customer</h2>
+                <form id="identifyForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="customer@example.com"
+                            autocomplete="off"
+                        >
+                        <small>Optional - but at least one field required</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input 
+                            type="text" 
+                            id="phoneNumber" 
+                            name="phoneNumber" 
+                            placeholder="1234567890"
+                            autocomplete="off"
+                        >
+                        <small>Optional - but at least one field required</small>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <span class="btn-text">Identify Contact</span>
+                        <span class="loader" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Display -->
+            <div class="card results-card" id="resultsCard" style="display: none;">
+                <h2>Contact Information</h2>
+                
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>Primary Contact</h3>
+                        <span class="badge badge-primary" id="primaryBadge">#1</span>
+                    </div>
+                    <p class="result-info">The oldest contact in this identity group</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>📧 Email Addresses</h3>
+                    <div class="tags-container" id="emailsContainer"></div>
+                    <p class="empty-state" id="emailsEmpty" style="display: none;">No emails found</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>📱 Phone Numbers</h3>
+                    <div class="tags-container" id="phonesContainer"></div>
+                    <p class="empty-state" id="phonesEmpty" style="display: none;">No phone numbers found</p>
+                </div>
+
+                <div class="result-section">
+                    <h3>🔗 Secondary Contacts</h3>
+                    <div class="secondary-contacts" id="secondaryContainer"></div>
+                    <p class="empty-state" id="secondaryEmpty" style="display: none;">No secondary contacts</p>
+                </div>
+            </div>
+
+            <!-- Error Display -->
+            <div class="card error-card" id="errorCard" style="display: none;">
+                <h2>❌ Error</h2>
+                <p id="errorMessage"></p>
+            </div>
+
+            <!-- Example Scenarios -->
+            <div class="card examples-card">
+                <h2>📚 Example Scenarios</h2>
+                <div class="examples-grid">
+                    <div class="example" onclick="fillExample('doc@fluxkart.com', '999999')">
+                        <h4>New Customer</h4>
+                        <p>Email: doc@fluxkart.com</p>
+                        <p>Phone: 999999</p>
+                    </div>
+                    <div class="example" onclick="fillExample('newemail@fluxkart.com', '999999')">
+                        <h4>Same Customer, New Email</h4>
+                        <p>Email: newemail@fluxkart.com</p>
+                        <p>Phone: 999999</p>
+                    </div>
+                    <div class="example" onclick="fillExample('george@hillvalley.edu', '919191')">
+                        <h4>Different Customer</h4>
+                        <p>Email: george@hillvalley.edu</p>
+                        <p>Phone: 919191</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Status -->
+        <div class="status-bar">
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Checking API...</span>
+            </div>
+            <div class="api-info">
+                API: <code>http://localhost:3000</code>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
